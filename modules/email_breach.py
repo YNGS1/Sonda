@@ -1,16 +1,9 @@
-import re
+from core.validators import is_valid_email
 from core.base_module import BaseModule
 
 class EmailBreachModule(BaseModule):
     def run(self, target):
-        pattern = r"^[\w.-]+@[\w.-]+\.\w+$"
-        match = re.match(pattern, target)
-        if match:
+        if is_valid_email(target):
             return("[+]Beginning Search!")
         else:
             return("[+]Invalid Email Address")
-
-if __name__ == "__main__":
-    module = EmailBreachModule()
-    print(module.run("test@email.com"))
-    print(module.run("not_an_email"))
