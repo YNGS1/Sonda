@@ -11,11 +11,3 @@ def is_valid_email(email):
 def is_valid_name(name):
     pattern = r"^[a-zA-Z]+(?:[-'\s][a-zA-Z]+)*$"
     return re.match(pattern, name) is not None
-
-if __name__ == "__main__":
-    print(is_valid_name("John"))
-    print(is_valid_name("John Smith"))
-    print(is_valid_name("O'Brien"))
-    print(is_valid_name("Mary Jean O'Brien-Smith"))
-    print(is_valid_name("12345"))
-    print(is_valid_name(""))
