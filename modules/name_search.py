@@ -7,11 +7,3 @@ class NameSearchModule(BaseModule):
             return("[+]Starting name based search")
         else:
             return("[+]Invalid name parameter!")
-
-    
-if __name__ == "__main__":
-    module = NameSearchModule()
-    print(module.run("John Smith"))
-    print(module.run("O'Brien"))
-    print(module.run("12345"))
-    print(module.run(""))
