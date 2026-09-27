@@ -16,5 +16,5 @@ def check_gravatar(email):
         return False
 
 if __name__ == "__main__":
-    email = input("Please enter a valid email address: ")
-    print(check_gravatar(email))
+    print(check_gravatar("test@example.com"))
+    print(check_gravatar("твоя_реален_имейл_с_gravatar@..."))
