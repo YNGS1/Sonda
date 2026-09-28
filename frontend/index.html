@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonda - The Open Source OSINT engine</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Your JavaScript goes here. "defer" = run it after the HTML has loaded. -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header class="masthead">
+        <div class="sonar" aria-hidden="true"></div>
+        <h1 class="brand">Sonda</h1>
+        <p class="tagline">Free, open source, all-seeing</p>
+    </header>
+
+    <main class="workspace">
+
+        <!-- LEFT: what the investigator knows + which modules to run -->
+        <form id="search-form" class="panel case-form" novalidate>
+
+            <fieldset class="group">
+                <legend>Target</legend>
+                <p class="hint">Fill in what you already know. Every extra detail sharpens the results.</p>
+
+                <div class="field-grid">
+                    <div class="field">
+                        <label for="first-name">First name</label>
+                        <input type="text" id="first-name" name="firstName" autocomplete="off">
+                    </div>
+
+                    <div class="field">
+                        <label for="last-name">Last name</label>
+                        <input type="text" id="last-name" name="lastName" autocomplete="off">
+                    </div>
+
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="name@example.com" autocomplete="off">
+                    </div>
+
+                    <div class="field">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="@handle" autocomplete="off">
+                    </div>
+
+                    <div class="field">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+359 …" autocomplete="off">
+                    </div>
+
+                    <div class="field">
+                        <label for="location">City or country</label>
+                        <input type="text" id="location" name="location" autocomplete="off">
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="group">
+                <legend>Modules</legend>
+                <p class="hint">Choose where Sonda should look.</p>
+
+                <div class="modules">
+                    <label class="module">
+                        <input type="checkbox" name="modules" value="email">
+                        <span class="module-name">Email</span>
+                        <span class="module-desc">Owner, registered accounts, known breaches</span>
+                    </label>
+
+                    <label class="module">
+                        <input type="checkbox" name="modules" value="social">
+                        <span class="module-name">Usernames &amp; social</span>
+                        <span class="module-desc">Profiles that share a handle across platforms</span>
+                    </label>
+
+                    <label class="module">
+                        <input type="checkbox" name="modules" value="phone">
+                        <span class="module-name">Phone</span>
+                        <span class="module-desc">Carrier, region, linked accounts</span>
+                    </label>
+
+                    <label class="module">
+                        <input type="checkbox" name="modules" value="geo">
+                        <span class="module-name">Location</span>
+                        <span class="module-desc">Places tied to the target’s name or city</span>
+                    </label>
+
+                    <label class="module">
+                        <input type="checkbox" name="modules" value="web">
+                        <span class="module-name">Web presence</span>
+                        <span class="module-desc">Search engine mentions, news, public documents</span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <!-- JS will write validation messages in here -->
+            <p id="form-error" class="form-error" role="alert"></p>
+
+            <button type="submit" id="search-btn" class="btn-primary">Start investigation</button>
+        </form>
+
+        <!-- RIGHT: status + results -->
+        <section class="panel results-panel" aria-labelledby="results-title">
+            <h2 id="results-title" class="panel-title">Findings</h2>
+
+            <!-- Shown while a search is running. Add the class "is-active" with JS. -->
+            <div id="status" class="status" aria-live="polite">
+                <span class="ping" aria-hidden="true"></span>
+                <span id="status-text">Scanning…</span>
+            </div>
+
+            <!-- Shown before the first search. Hide it with JS once results arrive. -->
+            <div id="empty-state" class="empty-state">
+                <p class="empty-title">No investigation yet</p>
+                <p>Enter what you know about the target, pick at least one module, and start the investigation.</p>
+            </div>
+
+            <!-- JS will create one <li class="finding"> per result in here -->
+            <ul id="results" class="results"></ul>
+
+            <button type="button" id="report-btn" class="btn-secondary" disabled>Export HTML report</button>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>Use Sonda only on targets you are authorised to investigate, and only with public data.</p>
+    </footer>
+
+</body>
+</html>
