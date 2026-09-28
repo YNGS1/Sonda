@@ -8,8 +8,9 @@ class NameSearchModule(BaseModule):
         else:
             return{"Valid" : True , "Message" : "Valid Name"}
 
-if __name__ == "__main__":
-    module = NameSearchModule()
-    print(module.run("Gencho Genchev"))
+# if __name__ == "__main__":
+
+#     module = NameSearchModule
+#     print(module.run("Gencho Genchev"))
 
 
